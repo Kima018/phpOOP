@@ -12,12 +12,25 @@ class User
 
     public function setIme($ime)
     {
-       return $this->ime=$ime;
+      $this->ime = $ime;
     }
 
     public function setPrezime($prezime)
     {
+        $this->prezime = $prezime;
+    }
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
 
+    public function getPass()
+    {
+        return $this->password;
     }
 
     public function getIme()
