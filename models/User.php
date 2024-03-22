@@ -12,8 +12,7 @@ class User
 
     public function setIme($ime)
     {
-
-
+       return $this->ime=$ime;
     }
 
     public function setPrezime($prezime)
@@ -23,7 +22,8 @@ class User
 
     public function getIme()
     {
-        return $this->ime . " " . $this->prezime;
+//        return $this->ime . " " . $this->prezime;
+        return $this->ime;
     }
 }
 
