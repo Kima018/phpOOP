@@ -1,97 +1,38 @@
 <?php
-
 namespace models;
 
 class User
 {
-    public string $ime;
-    public string $prezime;
+    public string $first_name;
+    public string $last_name;
     public string $email;
     private string $password;
 
 
-    public function setIme($ime)
+    public function setFirstName(string $first_name): void
     {
-      $this->ime = $ime;
+        $this->first_name = $first_name;
     }
 
-    public function setPrezime($prezime)
+    public function setLastName(string $last_name): void
     {
-        $this->prezime = $prezime;
+        $this->last_name = $last_name;
     }
-    public function setEmail($email)
+
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
-    public function setPassword($password)
+
+    public function setPassword(string $password): void
     {
         $this->password = $password;
     }
 
-    public function getPass()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function getIme()
-    {
-//        return $this->ime . " " . $this->prezime;
-        return $this->ime;
-    }
 }
 
-//$maki = new User();
-//$maki->ime = "Maki";
-//$maki->prezime = "Jakovljevic";
-//$maki->knjigeProcitane = ["Pragmaticni programer"];
-////var_dump($maki);
-//
-//
-//$marko = new User();
-//$marko->setIme("Marko");
-//$marko->setPrezime("Markovic");
-//
-//echo $marko->getIme();
-
-//\\
-
-class Animal
-{
-    const ANIMAL_TYPES = ["dog", "cat"];
-    public $type;
-    public $weight;
-
-    public function setType($type)
-    {
-        if (!in_array($type, ["dog", "cat"])) {
-            throw new \Error("type must be dog or cat");
-        }
-
-        $this->type = $type;
-    }
-
-    public function setWeight($weight)
-    {
-        if ($weight <= 0.2) {
-            throw new \Error("type must be dog or cat");
-
-        }
-        $this->weight = $weight;
-    }
-
-    public function getAnimal()
-    {
-        return "Animal is " . $this->type . " and that weight is " . $this->weight . " kg";
-    }
-
-
-}
-//
-//$dog = new Animal();
-//$dog->setType("dog");
-//$dog->setWeight(2);
-//echo $dog->getAnimal();
-//
-//var_dump( Animal::ANIMAL_TYPES);
-//
-//

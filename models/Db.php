@@ -42,7 +42,7 @@ $username = "root";
 $password = "";
 $dbname = "test_baza";
 
-$db = new DataBase($servername,$username,$password,$dbname);
+$db = new DataBase($servername, $username, $password, $dbname);
 $conn = $db->getConnect();
 
 ?>
