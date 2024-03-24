@@ -12,7 +12,7 @@ if (!isset($_POST['email'], $_POST['password'])) {
     die("Something got wrong!");
 }
 if (!validateEmail($_POST['email'])) {
-    die("Wrong email");
+    die("Wrong email format");
 }
 
 $user = new User($_POST['email'], $_POST['password']);

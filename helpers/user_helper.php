@@ -4,9 +4,9 @@ function validateEmail($email)
     return preg_match('/^\S+@\S+\.\S+$/', strtolower($email));
 }
 
-function validateName($first_name)
+function validateName($name)
 {
-    return preg_match("/^[a-zA-Z]+$/", $first_name);
+    return preg_match("/^[a-zA-Z]+$/", $name);
 }
 
 
