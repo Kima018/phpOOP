@@ -17,7 +17,7 @@ if (!validateEmail($_POST['email'])) {
 
 $user = new User($_POST['email'], $_POST['password']);
 $user->userExists() ? null : die("User not exists");
-$user->userValidate()? null : die("Wrong password");
+$user->userValidate() ? null : die("Wrong password");
 
 session_start();
 $_SESSION['registered'] = $_POST['email'];
