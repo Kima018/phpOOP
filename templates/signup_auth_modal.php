@@ -22,7 +22,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form class="space-y-4" method="POST" action="controller/registration.php">
+                    <form class="space-y-4" method="POST" action="controller/registration_controller.php">
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                                 First Name</label>

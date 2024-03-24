@@ -12,12 +12,12 @@ if (!isset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['p
     die("Something got wrong!");
 }
 //more conditions for auth
-$user = new User($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password']);
+$user = new User($_POST['email'], $_POST['password']);
 if ($user->userExists()) {
     die("User with this email already exists");
 }
 session_start();
-$user->userRegister();
+$user->userRegister($_POST['first_name'], $_POST['last_name']);
 $_SESSION['registered'] = $_POST['email'];
 header("Location: ../index.php?message=user-registered");
 exit();
