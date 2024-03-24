@@ -15,14 +15,12 @@ if (!validateEmail($_POST['email'])) {
     die("Wrong email");
 }
 
-$user = new User($_POST['email'],$_POST['password']);
-$user_details = $user->userExists();
+$user = new User($_POST['email'], $_POST['password']);
+$user->userExists() ? null : die("User not exists");
+$user->userValidate()? null : die("Wrong password");
 
-if (!password_verify($_POST['password'],$user_details['sifra'])){
-    die("Wrong password");
-}
 session_start();
-$_SESSION['registered'];
+$_SESSION['registered'] = $_POST['email'];
 $encoded_email = urlencode($_POST['email']);
 header("Location: ../index.php?user-registered=$encoded_email");
 

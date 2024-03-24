@@ -12,32 +12,47 @@ class User
     private string $password;
 
 
-    public function __construct($email, $password)
+    public function __construct(string $email, string $password)
     {
         $this->email = $email;
-        $this->password = password_hash($password, PASSWORD_BCRYPT);
+        $this->password = $password;
     }
-    public function userRegister($first_name,$last_name)
+
+    public function setUserName(string $first_name, string $last_name): void
+    {
+        $this->first_name = $first_name;
+        $this->last_name = $last_name;
+
+    }
+
+    public function userRegister(): void
     {
         global $conn;
+        $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
         $stmt = mysqli_prepare($conn, "INSERT INTO korisnik(ime,prezime,email,sifra) VALUES (?,?,?,?)");
-        mysqli_stmt_bind_param($stmt, "ssss", $first_name,$last_name, $this->email, $this->password);
+        mysqli_stmt_bind_param($stmt, "ssss", $this->first_name, $this->last_name, $this->email, $hashed_password);
         mysqli_stmt_execute($stmt);
     }
 
-    public function userExists()
+    public function userExists(): bool
     {
         global $conn;
-        $stmt = mysqli_prepare($conn, "SELECT email,sifra FROM korisnik WHERE email=?");
+        $stmt = mysqli_prepare($conn, "SELECT email FROM korisnik WHERE email=?");
         mysqli_stmt_bind_param($stmt, "s", $this->email);
         mysqli_stmt_execute($stmt);
-        $user = mysqli_fetch_assoc( mysqli_stmt_get_result($stmt));
-        if ($user !== null){
-            return $user;
-        }else{
-            return false;
-        }
+        return mysqli_stmt_get_result($stmt)->num_rows > 0;
     }
 
-}
+    public function userValidate(): bool
+    {
+        global $conn;
+        $stmt = mysqli_prepare($conn, "SELECT sifra FROM korisnik WHERE email=?");
+        mysqli_stmt_bind_param($stmt, "s", $this->email);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $exist_password);
+        mysqli_stmt_fetch($stmt);
+        return password_verify($this->password, $exist_password);
+    }
 
+
+}

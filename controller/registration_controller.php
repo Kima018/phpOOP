@@ -17,7 +17,8 @@ if ($user->userExists()) {
     die("User with this email already exists");
 }
 session_start();
-$user->userRegister($_POST['first_name'], $_POST['last_name']);
+$user->setUserName($_POST['first_name'], $_POST['last_name']);
+$user->userRegister();
 $_SESSION['registered'] = $_POST['email'];
 header("Location: ../index.php?message=user-registered");
 exit();
