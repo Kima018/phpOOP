@@ -1,6 +1,6 @@
 <?php
 
-//namespace models;
+namespace models;
 
 class DataBase
 {
@@ -8,42 +8,31 @@ class DataBase
     private string $username;
     private string $password;
     private string $dbname;
-    public mixed $conn;
+    protected mixed $conn;
 
-    public function __construct($servername, $username, $password, $dbname)
+    public function __construct(string $servername = "localhost", string $username = "root", string $password = "", string $dbname = "test_baza")
     {
         $this->servername = $servername;
         $this->username = $username;
         $this->password = $password;
         $this->dbname = $dbname;
         $this->connect();
-
     }
 
-    private function connect(): void
+    protected function connect()
     {
         $this->conn = mysqli_connect($this->servername, $this->username, $this->password, $this->dbname);
         if ($this->conn->connect_error) {
             die("Connection failed" . $this->conn->connect_error);
         }
-    }
-
-    public function getConnect()
-    {
         return $this->conn;
     }
 
-    public function closeConnection():void
+
+    public function closeConnection(): void
     {
         $this->conn->close();
     }
 
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "test_baza";
-
-$db = new DataBase($servername, $username, $password, $dbname);
-$conn = $db->getConnect();
