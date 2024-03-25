@@ -10,7 +10,7 @@ class DataBase
     private string $dbname;
     protected mixed $conn;
 
-    public function __construct(string $servername = "localhost", string $username = "root", string $password = "", string $dbname = "test_baza")
+  protected function __construct(string $servername = "localhost", string $username = "root", string $password = "", string $dbname = "test_baza")
     {
         $this->servername = $servername;
         $this->username = $username;

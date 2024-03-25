@@ -11,8 +11,6 @@ class User extends DataBase
     public string $email;
     private string $password;
 
-
-
     public function __construct(string $email, string $password)
     {
         parent::__construct();
@@ -29,7 +27,6 @@ class User extends DataBase
 
     public function userRegister(): void
     {
-
         $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
         $stmt = mysqli_prepare($this->conn, "INSERT INTO korisnik(ime,prezime,email,sifra) VALUES (?,?,?,?)");
         mysqli_stmt_bind_param($stmt, "ssss", $this->first_name, $this->last_name, $this->email, $hashed_password);
@@ -38,7 +35,6 @@ class User extends DataBase
 
     public function userExists(): bool
     {
-
         $stmt = mysqli_prepare($this->conn, "SELECT email FROM korisnik WHERE email=?");
         mysqli_stmt_bind_param($stmt, "s", $this->email);
         mysqli_stmt_execute($stmt);
@@ -47,7 +43,6 @@ class User extends DataBase
 
     public function userValidate(): bool
     {
-
         $stmt = mysqli_prepare($this->conn, "SELECT sifra FROM korisnik WHERE email=?");
         mysqli_stmt_bind_param($stmt, "s", $this->email);
         mysqli_stmt_execute($stmt);
